@@ -37,7 +37,6 @@
 				margin-right: 10px;
 			}
 			#err{
-				height: 1em;
 				color: #f00;
 			}
 			input[type=text]{
@@ -230,6 +229,7 @@
 
 			var c = document.getElementById('cover');
 			cover.style.display = 'flex';
+			// 35% of calories for lunch statistic from this source: https://www.omnicalculator.com/health/meal-calorie
 			document.getElementById('amount').textContent = Math.round( amt*0.35 - 413);
 		});
 
