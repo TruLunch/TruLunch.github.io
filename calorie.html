@@ -103,8 +103,9 @@
 				z-index: 1;
 				font-size: 1.5em;
 			}
-			#cover > label{
+			#cover > div > label{
 				margin: 0;
+				font-weight: 500;
 			}
 			#resubmit{
 				border: 1px #008037 solid;
@@ -127,12 +128,12 @@
 	<body>
 		<div class="app">
 			<div id="cover">
-				<div style="display:inline-block;">
+				<div>
 					<p>The average school lunch entree is </p>
 					<label id="amount">400</label>
 					<p> calories less than you need</p>
 				</div>
-				<div id="resubmit">Try Again</div>
+				<div id="resubmit">Back</div>
 				<p id="disclaimer">This is just an estimate, consult a medical professional for accurate numbers</p>
 			</div>
 			<div id="err"></div>
