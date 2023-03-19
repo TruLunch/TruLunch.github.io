@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Calorie Counter</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@100;300;500;700;900&family=Paytone+One&display=swap" rel="stylesheet">
+		<script src="https://kit.fontawesome.com/be9aeb0946.js" crossorigin="anonymous"></script>
+		<style type="text/css">
+			body{
+				margin:0;
+				width:100vw;
+				height:100vh;
+				display:flex;
+				justify-content: center;
+				align-items: center;
+				font-family: Montserrat, Helvetica, Arial;
+				font-weight: 300;
+				font-size:1.1em;
+			}
+			.app{
+				width:auto;
+				height:auto;
+				padding: 0 25px;
+			}
+			.app > div {
+				display:flex;
+				flex-direction: row;
+				align-items: center;
+				margin: 15px 0;
+				max-width: 450px;
+			}
+			.app > div > label{
+				font-weight: 500;
+				margin-right: 10px;
+			}
+			#err{
+				height: 1em;
+				color: #f00;
+			}
+			input[type=text]{
+				width:2.2em;
+				font-size:1.1em;
+				height: 1.1em;
+				margin: 5px 0 5px 10px;
+				border: 1px #3a3a3a solid;
+				border-radius: 5px;
+				font-family: Montserrat;
+				font-weight: 300;
+				padding:5px;
+			}
+			#age{
+				width:1.7em;
+			}
+			#feet{
+				width:1.2em;
+			}
+			#inches{
+				width:1.5em;
+			}
+			p{
+				margin: 0 0 0 4px;
+				color:#777;
+				font-weight: 300;
+			}
+			input[type=text]:focus{
+				outline:none;
+			}
+			form{
+				user-select: none;
+			}
+			form > label{
+				cursor:pointer;
+			}
+			label > p {
+				font-size:0.8em;
+				margin-bottom: 5px;
+			}
+			#submit{
+				border: 1px #008037 solid;
+				color: #008037;
+				padding: 7px 20px;
+				text-align: center;
+				display: flex;
+				justify-content: center;
+				cursor: pointer;
+				user-select: none;
+			}
+			#cover{
+				position: fixed;
+				top: 0;
+				left: 0;
+				display: none;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				width:300px;
+				padding: 0 calc( (100% - 300px)/2 );
+				height: 100%;
+				background: #fff;
+				text-align: center;
+				z-index: 1;
+				font-size: 1.5em;
+			}
+			#cover > label{
+				margin: 0;
+			}
+			#resubmit{
+				border: 1px #008037 solid;
+				color: #008037;
+				padding: 4px 20px;
+				margin-top:15px;
+				text-align: center;
+				display: flex;
+				justify-content: center;
+				cursor: pointer;
+				user-select: none;
+				font-size: 1.2rem;
+			}
+			#disclaimer{
+				font-size: 0.7rem;
+				margin-top: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="app">
+			<div id="cover">
+				<div style="display:inline-block;">
+					<p>The average school lunch entree is </p>
+					<label id="amount">400</label>
+					<p> calories less than you need</p>
+				</div>
+				<div id="resubmit">Try Again</div>
+				<p id="disclaimer">This is just an estimate, consult a medical professional for accurate numbers</p>
+			</div>
+			<div id="err"></div>
+			<div>
+				<label>Age</label>
+				<input type="text" id="age">
+				<p>years</p>
+			</div>
+			<div>
+				<label>Height</label>
+				<input type="text" id="feet">
+				<p>ft</p>
+				<input type="text" id="inches">
+				<p>in</p>
+			</div>
+			<div>
+				<label>Weight</label>
+				<input type="text" id="weight">
+				<p>lbs</p>
+			</div>
+			<div>
+				<label>Sex</label>
+				<form id="gender">
+					<input name="gender_select" id="male" type="radio" value="M">
+					<label for="male">Male</label>
+					<input name="gender_select" id="female" type="radio" value="F">
+					<label for="female">Female</label>
+					<input name="gender_select" id="other" type="radio" value="O">
+					<label for="other">Other</label>
+				</form>
+			</div>
+			<div>
+				<label>Level of Activity</label>
+				<form id="activity">
+					<input name="activity_select" id="inactive" type="radio" value="0">
+					<label for="inactive">Inactive: <p>Never or rarely physically active</p></label>
+					<input name="activity_select" id="somewhat_active" type="radio" value="1">
+					<label for="somewhat_active">Somewhat Active: <p>Light or moderate activity several times a week</p></label>
+					<input name="activity_select" id="active" type="radio" value="2">
+					<label for="active">Active: <p>Moderate activity most days or vigorous activity several times a week</p></label>
+					<input name="activity_select" id="very_active" type="radio" value="4">
+					<label for="very_active">Very Active:<p>Large amounts of moderate or vigorous activity most days</p></label>
+				</form>
+			</div>
+			<div id="submit">Submit</div>
+		</div>
+	</body>
+	<script type="text/javascript" defer>
+		document.getElementById('submit').addEventListener('click', () => {
+			var age = document.getElementById('age').value;
+			var feet = document.getElementById('feet').value;
+			var inches = document.getElementById('inches').value;
+			var weight = document.getElementById('weight').value;
+			var gender = document.getElementById('gender')['gender_select'].value;
+			var activity = document.getElementById('activity')['activity_select'].value;
+			
+			// Code from this point onwards is an implementation of code from this page: https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/calorie-calculator/itt-20402304
+
+			if (age == '' || feet == '' ||  weight == '' || gender == '' || activity == '') {
+				document.getElementById('err').textContent = 'Make sure to enter something into every field';
+				return;
+			}
+
+			if (inches == '') inches = '0';
+			age = parseInt(age);
+			feet = parseInt(feet);
+			inches = parseInt(inches);
+			weight = parseInt(weight);
+
+			if ( isNaN(age) || isNaN(feet) || isNaN(inches) || isNaN(weight) ) {
+				document.getElementById('err').textContent = 'Make sure to enter numbers only';
+				return;
+			}
+
+			var height = feet*12 + inches;
+
+			// convert to metric (cm and kg)
+			height = height*2.54;
+			weight = weight/2.2;
+
+			var BMI = (weight / height**2) * 10000;
+			var amt;
+
+			if (gender == 'M') {
+				amt = (((66.473 + (13.7516 * weight)) + (5.0033 * height)) - (6.755 * age));
+			} else {
+				amt = (((655.0955 + (9.5634 * weight)) + (1.8496 * height)) - (4.6756 * age));
+			}
+
+			if (BMI < 30) amt = amt * 1.2;
+
+			// multiplies by 1, 1.1, 1.2, or 1.4
+			amt = amt * (1 + parseInt(activity) * 0.1 );
+
+			var c = document.getElementById('cover');
+			cover.style.display = 'flex';
+			document.getElementById('amount').textContent = Math.round( amt*0.35 - 413);
+		});
+
+		document.getElementById('resubmit').addEventListener('click', () => {
+			cover.style.display = 'none';
+			document.getElementById('err').textContent = '';
+		})
+
+	</script>
+</html>
