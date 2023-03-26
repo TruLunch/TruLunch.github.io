@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Calorie Counter</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@100;300;500;700;900&family=Paytone+One&display=swap" rel="stylesheet">
+		<script src="https://kit.fontawesome.com/be9aeb0946.js" crossorigin="anonymous"></script>
+		<style type="text/css">
+			body{
+				width:100vw;
+				height:100vh;
+				margin:0;
+				font-family: Montserrat, Helvetica, Arial;
+				font-weight: 300;
+				font-size: 1.1em;
+				color: #3a3a3a;
+				display:flex;
+				flex-direction: column;
+			}
+			.header{
+				width: 100%;
+				padding: 15px 0;
+				display:flex;
+				flex-flow: wrap;
+				justify-content: center;
+				align-items: center;
+			}
+			#previous_week, #next_week{
+				background: #008037;
+				color:#fff;
+				padding: 3px 7%;
+				border-radius: 200px;
+				border: 1px solid #0000;
+				cursor: pointer;
+				user-select: none;
+			}
+			#current_week{
+				border: 1px #008037 solid;
+				padding:3px 7%;
+				border-radius: 200px;
+				margin: 10px 20px;
+				cursor: default;
+			}
+			.main{
+				position: relative;
+			}
+			.menu{
+				flex: 1;
+				position: relative;
+				width: calc(100% - 250px);
+				left: 0;
+				display: flex;
+				flex-flow: wrap;
+				flex-direction: row;
+				justify-content: space-evenly;
+			}
+			.item{
+				position: relative;
+				width: 230px;
+				padding: 5px 10px;
+				margin: 10px;
+				margin-bottom: 25px;
+				padding-bottom: 40px;
+				border: 2px #eee solid;
+				border-radius: 10px;
+			}
+			.item_image{
+
+			}
+			.item_name{
+				font-weight: 500;
+				width: calc( 100% - 15px);
+			}
+			.fa-circle-info{
+				position: absolute;
+				top: 10px;
+				right: 10px;
+				font-size: 0.9rem;
+				cursor: pointer;
+			}
+			.item_macros{
+				font-size:0.75em;
+				margin-bottom: 10px;
+				display:flex;
+				flex-direction: row;
+				flex-flow: wrap;
+			}
+			.item_macros > div {
+				text-align: center;
+				width: auto;
+			}
+			.item_allergies{
+				display: flex;
+				justify-content: flex-start;
+				height: 25px;
+				margin-bottom: 10px;
+			}
+			.allergen-icon{
+				width: 25px;
+				height: 25px;
+				border-radius: 1000px;
+				font-size: 12.5px;
+				text-align: center;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background: #000;
+				color: #fff;
+				margin-right: 5px;
+				position: relative;
+			}
+			.allergen-icon::after{
+				font-family: Montserrat, Helvetica, Arial;
+				font-weight: 300;
+				background: #000;
+				position:absolute;
+				bottom: calc( 100% + 3px);
+				background: #3a3a3a;
+				color: #fff;
+				padding: 3px 7px;
+				border-radius: 5px;
+				display: none;
+			}
+			.allergen-icon:hover::after {
+				display: flex;
+			}
+			.fa-wheat-awn{
+				background: #e2b122;
+			}
+			.fa-wheat-awn::after{
+				content: "Contains Gluten";
+			}
+			.fa-cow{
+				background: #97d8e3;
+			}
+			.fa-cow::after{
+				content: "Contains Dairy";
+			}
+			.fa-egg{
+				background: #e7dd68;
+			}
+			.fa-egg::after{
+				content: "Contains Egg";
+			}
+			.fa-tablets{
+				background: #d18633;
+			}
+			.fa-tablets::after{
+				content: "Contains Nuts";
+			}
+			.fa-blackberry{
+				background: #613317;
+			}
+			.fa-blackberry::after{
+				content: "Contains Sesame";
+			}
+			.fa-seedling{
+				background: #66e974;
+			}
+			.fa-seedling::after{
+				content: "Vegetarian";
+			}
+			.fa-spa{
+				background: #00a613;
+			}
+			.fa-spa::after{
+				content: "Contains Soy";
+			}
+			.fa-pepper-hot{
+				background: #e42a2a;
+			}
+			.fa-pepper-hot::after{
+				content: "Spicy";
+			}
+
+			.item_add{
+				width: calc(100% - 2px - 20px);
+				text-align: center;
+				border: 1px #008037 solid;
+				padding: 3px 0;
+				color: #008037;
+				border-radius: 3px;
+				cursor: pointer;
+				user-select: none;
+				position: absolute;
+				bottom: 5px;
+				left: 10px;
+			}
+			.order{
+				position: absolute;
+				width: 250px;
+				height: calc(100% - 75px);
+				top: 75px;
+				left: calc(100% - 250px);
+				box-shadow: -2px 0 0 0 #eee;
+			}
+			.order_label{
+				width: 100%;
+				font-size: 1.5em;
+				text-align: center;
+			}
+			.all_orders{
+				width: 100%;
+			}
+			.order_item{
+				display: flex;
+				align-items: center;
+			}
+			.order_item_name{
+				width: calc( 100% - 40px - 15px);
+				padding-left: 15px;
+			}
+			.order_item_right{
+				width: 40px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+			.order_item_right > .fa-plus{
+				font-size: 0.75em;
+				margin-bottom: 5px;
+				border-radius: 5px;
+				padding: 2px 4px;
+				border: 1px #008037 solid;
+				color: #008037;
+			}
+			.order_item_amount{
+				font-weight: 500;
+			}
+			.order_item_right > .fa-minus{
+				font-size: 0.75em;
+				margin-top: 5px;
+				border-radius: 5px;
+				padding: 2px 4px;
+				border: 1px #008037 solid;
+				color: #008037;
+			}
+			#checkout{
+				background: #008037;
+				width: calc( 100% - 40px);
+				margin: 10px 20px;
+				margin-top: 50px;
+				padding: 5px 0;
+				text-align: center;
+				color: #fff;
+				border-radius: 5px;
+				cursor: pointer;
+				user-select: none;
+			}
+			.soft-hide{
+				opacity: 0;
+			}
+			.hard-hide{
+				display: none;
+			}
+			@media only screen and (max-device-width: 550px) {
+				.order{
+					background: #fff;
+					position: fixed;
+					top: calc( 100% - 49px);
+					bottom: 0;
+					width: calc( 100% + 4px);
+					left: -2px;
+					box-shadow: 0 0 8px 3px #0005;
+				}
+				.order_label{
+					display: none;
+				}
+				.all_orders{
+					display: none;
+				}
+				#checkout{
+					margin: 10px 20px;
+				}
+				.menu{
+					width: 100%;
+					margin-bottom: 40px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="header">
+			<div id="previous_week">Previous Week</div>
+			<div id="current_week">March 26 - April 1</div>
+			<div id="next_week">Next Week</div>
+		</div>
+		<div class="main">
+			<div class="menu">
+				<div class="item">
+					<div class="item_name">Turkey Pesto Sandwich</div>
+					<i class="fa-solid fa-circle-info"></i>
+					<div class="item_macros">742 cal</div>
+					<div class="item_allergies">
+						<i class="allergen-icon fa-solid fa-wheat-awn"></i>
+						<i class="allergen-icon fa-solid fa-cow"></i>
+					</div>
+					<div class="item_add">Add Item</div>
+				</div>
+				<div class="item">
+					<div class="item_name">Buffalo Chicken Wrap</div>
+					<i class="fa-solid fa-circle-info"></i>
+					<div class="item_macros">876 cal</div>
+					<div class="item_allergies">
+						<i class="allergen-icon fa-solid fa-wheat-awn"></i>
+						<i class="allergen-icon fa-solid fa-pepper-hot"></i>
+					</div>
+					<div class="item_add">Add Item</div>
+				</div>
+				<div class="item">
+					<div class="item_name">Mac n' Cheese</div>
+					<i class="fa-solid fa-circle-info"></i>
+					<div class="item_macros">605 cal</div>
+					<div class="item_allergies">
+						<i class="allergen-icon fa-solid fa-wheat-awn"></i>
+						<i class="allergen-icon fa-solid fa-cow"></i>
+						<i class="allergen-icon fa-solid fa-seedling"></i>
+					</div>
+					<div class="item_add">Add Item</div>
+				</div>
+			</div>
+			<div class="order">
+				<div class="order_label">Your Order:</div>
+				<div class="all_orders">
+					<div class="order_item">
+						<div class="order_item_name">Pepperoni Pizza</div>
+						<div class="order_item_right">
+							<i class="fa-solid fa-plus"></i>
+							<div class="order_item_amount">1</div>
+							<i class="fa-solid fa-minus"></i>
+						</div>
+					</div>
+				</div>
+				<div id="checkout">Checkout</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" defer>
+		
+	</script>
+</html>
