@@ -161,7 +161,6 @@ function checkout() {
 	for ( i=0; i<data.length; i++) {
 		var week = document.createElement('div'); week.classList.add('checkout_week');
 		checkWeek(week, i);
-		var subItems = 0;
 		for ( I=0; I<data[i].items.length; I++ ) {
 			if ( data[i].order[ data[i].items[I] ] > 0 ) {
 				var d = data[i];
@@ -170,11 +169,9 @@ function checkout() {
 				subtotal += menu[ d.items[I] ].price  *  d.order[ d.items[I] ];
 				var name = document.createElement('div'); name.textContent = menu[ d.items[I] ].name; name.classList.add('checkout_item_name');
 				var amt = document.createElement('div'); amt.textContent = d.order[ d.items[I] ]; amt.classList.add('checkout_item_amount');
-				subItems += d.order[ d.items[I] ];
 				cItem.append(price, name, amt);
 			}
 		}
-		shipping += 3.68 * Math.ceil(subItems/5);
 
 		document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
 		document.getElementById('shipping').textContent = `$${shipping.toFixed(2)}`;
@@ -189,6 +186,7 @@ function checkout() {
 				label.textContent = `Delivery for ${data[i].start}`;
 				label.classList.add('checkout_week_label');
 				week.append(label);
+				shipping += 3.68;
 				return;
 			}
 		}
