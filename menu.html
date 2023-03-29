@@ -32,7 +32,7 @@
 				justify-content: center;
 				align-items: center;
 			}
-			#previous_week, #next_week{
+			.previous_week, .next_week{
 				background: #008037;
 				color:#fff;
 				padding: 3px 7%;
@@ -42,8 +42,14 @@
 				user-select: none;
 				transition: 0.2s;
 			}
-			#previous_week:hover, #next_week:hover{
+			.previous_week:hover, #next_week:hover{
 				background: #2dc653;
+			}
+			.unclickable_week{
+				background: #ddd;
+			}
+			.unclickable_week:hover{
+				background: #ddd;
 			}
 			#current_week{
 				border: 1px #008037 solid;
@@ -745,6 +751,7 @@
 				}
 			}
 
+
 			.soft-hide{
 				opacity: 0;
 				cursor: default;
@@ -759,9 +766,9 @@
 	</head>
 	<body>
 		<div class="header">
-			<div id="previous_week">Previous Week</div>
+			<div class="previous_week">Previous Week</div>
 			<div id="current_week">March 26 - April 1</div>
-			<div id="next_week">Next Week</div>
+			<div class="next_week">Next Week</div>
 		</div>
 		<div class="main">
 			<div class="menu">
@@ -953,10 +960,10 @@
 	<script type="text/javascript" defer>
 		currentWeek = 0;
 		setDate(currentWeek);
-		document.getElementById('previous_week').addEventListener('click', () => {
+		document.querySelector('.previous_week').addEventListener('click', () => {
 			setDate(currentWeek - 1);
 		})
-		document.getElementById('next_week').addEventListener('click', () => {
+		document.querySelector('.next_week').addEventListener('click', () => {
 			setDate(currentWeek + 1);
 		})
 		document.querySelector('.info_exit').addEventListener('click', () => {
