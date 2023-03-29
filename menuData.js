@@ -51,7 +51,7 @@ var menu = [
 		fiber: 3,
 		sugar: 5,
 		protein: 29,
-		tags: ['gluten'],
+		tags: ['gluten', 'spicy'],
 		ingredients: ['vegetable oil', 'butter', 'chicken', 'flour tortilla', 'iceberg lettuce', 'celery', 'hot pepper sauce', 'white vinegar', 'worcestershire sauce', 'cayenne pepper', 'garlic powder', 'salt']
 	},{
 		name: "Turkey Pesto Sandwich",
@@ -64,7 +64,7 @@ var menu = [
 		fiber: 2.4,
 		sugar: 4.7,
 		protein: 73.2,
-		tags: ['gluten', 'dairy', 'spicy'],
+		tags: ['gluten', 'dairy'],
 		ingredients: ['Sourdough', 'Provolone cheese', 'Turkey', 'Tomatoes', 'Olive oil', 'Garlic', 'Salt', 'Basil leaves', 'Parmesan cheese']
 	},{
 		name: "Mac n' Cheese",
