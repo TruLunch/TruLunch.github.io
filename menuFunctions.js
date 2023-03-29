@@ -2,14 +2,14 @@ function setDate(num) {
 	if (num < 0) return;
 	if (num > data.length - 1) return;
 	if (num == 0) {
-		document.getElementById('previous_week').classList.add('soft-hide');
+		document.querySelector('.previous_week').classList.add('unclickable_week');
 	} else {
-		document.getElementById('previous_week').classList.remove('soft-hide');
+		document.querySelector('.previous_week').classList.remove('unclickable_week');
 	}
 	if (num >= data.length - 1) {
-		document.getElementById('next_week').classList.add('soft-hide');
+		document.querySelector('.next_week').classList.add('unclickable_week');
 	} else {
-		document.getElementById('next_week').classList.remove('soft-hide');
+		document.querySelector('.next_week').classList.remove('unclickable_week');
 	}
 	document.getElementById('current_week').textContent = `${data[num].start} - ${data[num].end}`;
 	let m = document.querySelector('.menu');
