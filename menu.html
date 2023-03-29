@@ -11,10 +11,11 @@
 		<style type="text/css">
 			:root{
 				--window-height: 100%;
+				--window-width: 100%;
 			}
 			body{
-				width:100vw;
-				height:100vh;
+				width: var(--window-width);
+				height: var(--window-height);
 				margin:0;
 				font-family: Montserrat, Helvetica, Arial;
 				font-weight: 300;
@@ -24,7 +25,7 @@
 				flex-direction: column;
 			}
 			.header{
-				width: 100%;
+				width: var(--window-width);
 				padding: 15px 0;
 				display:flex;
 				flex-flow: wrap;
@@ -57,7 +58,7 @@
 			}
 			.menu{
 				position: relative;
-				width: calc(100% - 250px);
+				width: calc(var(--window-width) - 250px);
 				left: 0;
 				display: flex;
 				flex-flow: wrap;
@@ -353,8 +354,8 @@
 
 
 			.extra_info_container{
-				width: 100vw;
-				height: 100vh;
+				width: var(--window-width);
+				height: var( --window-height);
 				z-index: 4;
 				position: fixed;
 				top: 0;
@@ -557,7 +558,6 @@
 				justify-content: center;
 				align-items: center;
 				flex-direction: column;
-				margin-bottom: 5vh;
 				border-top: 2px #eee solid;
 			}
 			.checkout_price{
@@ -613,7 +613,7 @@
 
 			.end_screen{
 				width: 100%;
-				height: calc( 100% - 15px - 20px - 10px);
+				height: calc( var(--window-height) - 15px - 20px - 10px);
 				background: #fff;
 				position: fixed;
 				top: 0;
@@ -676,7 +676,7 @@
 				}
 				.checkout_btn_container{
 					position: fixed;
-					top: calc( 100% - 55px);
+					top: calc( var(--window-height) - 55px);
 					left: 0;
 					width: calc( 100vw - 40px );
 				}
@@ -685,7 +685,7 @@
 					margin-bottom: 40px;
 				}
 				.item{
-					width: calc(100%/2 - 50px);
+					width: calc((100% - 50px)/3 );
 					min-width: 200px;
 				}
 
