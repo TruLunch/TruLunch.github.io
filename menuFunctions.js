@@ -18,11 +18,12 @@ function setDate(num) {
 	for ( i=0; i<arr.length; i++) {
 		var obj = menu[ arr[i] ];
 		var item = document.createElement('div'); item.classList.add('item'); m.append(item);
+		var image = document.createElement('img'); image.src = obj.image; image.classList.add('item_image');
 		var name = document.createElement('div'); name.textContent = obj.name; name.classList.add('item_name');
-		var info = document.createElement('i'); info.classList.add('fa-solid'); info.classList.add('fa-circle-info'); infoEvent(obj, info);
+		var info = document.createElement('i'); info.classList.add('fa-solid'); info.classList.add('fa-info'); infoEvent(obj, info);
 		var macros = document.createElement('div'); macros.textContent = `$${obj.price} | ${obj.calories} cal`;macros.classList.add('item_macros');
 		var allergies = document.createElement('div'); allergies.classList.add('item_allergies');
-		item.append(name, info, macros, allergies);
+		item.append(image, name, info, macros, allergies);
 		for ( i2=0; i2<obj.tags.length; i2++ ) {
 			var icon = document.createElement('i');
 			icon.classList.add('fa-solid', 'fa-brand', 'allergen-icon');
@@ -118,6 +119,7 @@ function setOrder(week) {
 function showInfo(obj) {
 	var info = document.querySelector('.extra_info_container');
 	info.classList.remove('hard-hide');
+	document.querySelector('.info_image').src = obj.image;
 	document.querySelector('.info_name').textContent = obj.name;
 	document.querySelector('.info_price').textContent = `$${obj.price}`;
 	// container
@@ -161,6 +163,7 @@ function checkout() {
 	for ( i=0; i<data.length; i++) {
 		var week = document.createElement('div'); week.classList.add('checkout_week');
 		checkWeek(week, i);
+		var subShip = 0;
 		for ( I=0; I<data[i].items.length; I++ ) {
 			if ( data[i].order[ data[i].items[I] ] > 0 ) {
 				var d = data[i];
@@ -170,8 +173,11 @@ function checkout() {
 				var name = document.createElement('div'); name.textContent = menu[ d.items[I] ].name; name.classList.add('checkout_item_name');
 				var amt = document.createElement('div'); amt.textContent = d.order[ d.items[I] ]; amt.classList.add('checkout_item_amount');
 				cItem.append(price, name, amt);
+				subShip += 1;
 			}
 		}
+		console.log(subShip);
+		shipping += 0.2 * Math.ceil(subShip/5);
 
 		document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
 		document.getElementById('shipping').textContent = `$${shipping.toFixed(2)}`;
@@ -186,7 +192,7 @@ function checkout() {
 				label.textContent = `Delivery for ${data[i].start}`;
 				label.classList.add('checkout_week_label');
 				week.append(label);
-				shipping += 3.68;
+				shipping += 3.48;
 				return;
 			}
 		}
