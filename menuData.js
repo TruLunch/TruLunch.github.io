@@ -12,7 +12,7 @@ var data = [{
 	start: numberToDate(getDayInWeek('Sunday', today() + 14)).split(',')[0],
 	end: numberToDate(getDayInWeek('Saturday', today() + 14)).split(',')[0],
 	id: 2,
-	items: [0, 1, 2],
+	items: [1, 2, 0],
 	order: {
 		0: 0,
 		1: 0,
@@ -52,6 +52,7 @@ var menu = [
 		sugar: 5,
 		protein: 29,
 		tags: ['gluten', 'spicy'],
+		image: 'buffalo-chicken-wrap.png',
 		ingredients: ['vegetable oil', 'butter', 'chicken', 'flour tortilla', 'iceberg lettuce', 'celery', 'hot pepper sauce', 'white vinegar', 'worcestershire sauce', 'cayenne pepper', 'garlic powder', 'salt']
 	},{
 		name: "Turkey Pesto Sandwich",
@@ -65,6 +66,7 @@ var menu = [
 		sugar: 4.7,
 		protein: 73.2,
 		tags: ['gluten', 'dairy'],
+		image: 'turkey-pesto.png',
 		ingredients: ['Sourdough', 'Provolone cheese', 'Turkey', 'Tomatoes', 'Olive oil', 'Garlic', 'Salt', 'Basil leaves', 'Parmesan cheese']
 	},{
 		name: "Mac n' Cheese",
@@ -78,6 +80,7 @@ var menu = [
 		sugar: 11,
 		protein: 44,
 		tags: ['gluten', 'dairy', 'vegetarian'],
+		image: 'mac-and-cheese.png',
 		ingredients: ['Barilla protein+ Pasta', 'Cheddar cheese', 'Mozzarella cheese', 'Greek yogurt', 'Paprika', 'Garlic powder', 'Salt', 'Pepper', 'Water']
 	}
 ]
