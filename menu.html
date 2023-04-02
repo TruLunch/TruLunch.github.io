@@ -37,12 +37,28 @@
 				color:#fff;
 				padding: 3px 7%;
 				border-radius: 200px;
-				border: 1px solid #0000;
 				cursor: pointer;
 				user-select: none;
 				transition: 0.2s;
 			}
 			.previous_week:hover, .next_week:hover{
+				background: #2dc653;
+			}
+			.week_icons_container{
+				display: flex;
+				width: 100%;
+				justify-content: center;
+			}
+			.previous_week_icon, .next_week_icon{
+				background: #008037;
+				color:#fff;
+				padding: 3px 7%;
+				margin: 0 5px;
+				border-radius: 200px;
+				justify-content: center;
+				transition: 0.2s;
+			}
+			.previous_week_icon:hover, .next_week_icon:hover{
 				background: #2dc653;
 			}
 			.unclickable_week{
@@ -61,15 +77,33 @@
 			.main{
 				position: relative;
 				flex-grow: 1;
+				display: flex;
 			}
 			.menu{
 				position: relative;
-				width: calc(var(--window-width) - 250px);
-				left: 0;
+				height: calc( 100vh - 80px);
+				margin-right: 2px;
+				overflow-y: auto;
 				display: flex;
+				flex: 1;
 				flex-flow: wrap;
 				flex-direction: row;
 				justify-content: flex-start;
+			}
+			.menu::-webkit-scrollbar{
+				width: 7px;
+			}
+			.menu::-webkit-scrollbar-track{
+				padding: 2px;
+			}
+			.menu::-webkit-scrollbar-thumb{
+				background: #aaa;
+				border-radius: 100px;
+				cursor: pointer;
+				transition: 0.2s;
+			}
+			.menu::-webkit-scrollbar-thumb:hover{
+				background: #666;
 			}
 			.item{
 				position: relative;
@@ -78,16 +112,17 @@
 				min-width: 230px;
 				padding: 5px 10px;
 				margin: 10px 15px;
-				margin-bottom: 25px;
 				padding-bottom: 40px;
 				border: 2px #eee solid;
 				border-radius: 10px;
 			}
 			.item_image{
-				height: 150px;
+				height: 200px;
 				width: 100%;
 				object-fit: cover;
 				border-radius: 10px;
+				cursor: pointer;
+				user-select: none;
 			}
 			.item_name{
 				font-weight: 500;
@@ -214,9 +249,12 @@
 			.fa-question::after{
 				content: "Rendering Error";
 			}
-			@media only screen and (min-device-width: 550px) {
+			@media only screen and (min-device-width: 820px) {
 				.null_icon:hover::after{
 					display:none;
+				}
+				.week_icons_container{
+					display: none;
 				}
 			}
 			.item_add{
@@ -262,13 +300,10 @@
 				text-shadow: 0.5px 0 0 #008037, 1px 0 0 #008037, 1.5px 0 0 #008037, 2px 0 0 #008037, -0.5px 0 0 #008037, -1px 0 0 #008037, -1.5px 0 0 #008037, -2px 0 0 #008037, 0 0.5px 0 #008037, 0 1px 0 #008037;
 			}
 			.order{
-				position: absolute;
 				width: 248px;
+				height: calc( 100vh - 80px);
 				margin-right: 2px;
-				height: 100%;
 				overflow-y: auto;
-				top: 0;
-				left: calc(100% - 250px);
 				box-shadow: -2px 0 0 0 #eee;
 			}
 			.order_label{
@@ -672,12 +707,12 @@
 			}
 
 
-			@media only screen and (max-device-width: 550px) {
+			@media only screen and (max-device-width: 820px) {
 				.header{
 					flex-direction: column;
 				}
-				.menu{
-					justify-content: space-evenly;
+				.previous_week, .next_week{
+					display: none;
 				}
 				.order{
 					background: #fff;
@@ -705,7 +740,9 @@
 					width: calc( 100vw - 40px );
 				}
 				.menu{
+					justify-content: space-evenly;
 					width: 100%;
+					height: calc( 100vh - 103px - 55px );
 					margin-bottom: 40px;
 				}
 				.item{
@@ -713,6 +750,9 @@
 					min-width: 100px;
 					margin: 5px;
 					margin-bottom: 25px;
+				}
+				.item_image{
+					height: 150px;
 				}
 				.item_name{
 					font-size: 0.9em;
@@ -771,7 +811,11 @@
 					margin-top: 0;
 				}
 			}
-
+			@media only screen and (max-device-width: 400px) {
+				.item_image{
+					height: 125px;
+				}
+			}
 
 			.soft-hide{
 				opacity: 0;
@@ -790,6 +834,10 @@
 			<div class="previous_week">Previous Week</div>
 			<div id="current_week">March 26 - April 1</div>
 			<div class="next_week">Next Week</div>
+			<div class="week_icons_container">
+				<i class="fa-solid fa-arrow-left previous_week_icon"></i>
+				<i class="fa-solid fa-arrow-right next_week_icon"></i>
+			</div>
 		</div>
 		<div class="main">
 			<div class="menu">
@@ -988,9 +1036,16 @@
 		document.querySelector('.previous_week').addEventListener('click', () => {
 			setDate(currentWeek - 1);
 		})
+		document.querySelector('.previous_week_icon').addEventListener('click', () => {
+			setDate(currentWeek - 1);
+		})
 		document.querySelector('.next_week').addEventListener('click', () => {
 			setDate(currentWeek + 1);
 		})
+		document.querySelector('.next_week_icon').addEventListener('click', () => {
+			setDate(currentWeek + 1);
+		})
+
 		document.querySelector('.info_exit').addEventListener('click', () => {
 			document.querySelector('.extra_info_container').classList.add('hard-hide');
 		})
