@@ -3,13 +3,17 @@ function setDate(num) {
 	if (num > data.length - 1) return;
 	if (num == 0) {
 		document.querySelector('.previous_week').classList.add('unclickable_week');
+		document.querySelector('.previous_week_icon').classList.add('unclickable_week');
 	} else {
 		document.querySelector('.previous_week').classList.remove('unclickable_week');
+		document.querySelector('.previous_week_icon').classList.remove('unclickable_week');
 	}
 	if (num >= data.length - 1) {
 		document.querySelector('.next_week').classList.add('unclickable_week');
+		document.querySelector('.next_week_icon').classList.add('unclickable_week');
 	} else {
 		document.querySelector('.next_week').classList.remove('unclickable_week');
+		document.querySelector('.next_week_icon').classList.remove('unclickable_week');
 	}
 	document.getElementById('current_week').textContent = `${data[num].start} - ${data[num].end}`;
 	let m = document.querySelector('.menu');
@@ -18,7 +22,7 @@ function setDate(num) {
 	for ( i=0; i<arr.length; i++) {
 		var obj = menu[ arr[i] ];
 		var item = document.createElement('div'); item.classList.add('item'); m.append(item);
-		var image = document.createElement('img'); image.src = obj.image; image.classList.add('item_image');
+		var image = document.createElement('img'); image.src = obj.image; image.classList.add('item_image'); infoEvent(obj, image);
 		var name = document.createElement('div'); name.textContent = obj.name; name.classList.add('item_name');
 		var info = document.createElement('i'); info.classList.add('fa-solid'); info.classList.add('fa-info'); infoEvent(obj, info);
 		var macros = document.createElement('div'); macros.textContent = `$${obj.price} | ${obj.calories} cal`;macros.classList.add('item_macros');
@@ -173,10 +177,9 @@ function checkout() {
 				var name = document.createElement('div'); name.textContent = menu[ d.items[I] ].name; name.classList.add('checkout_item_name');
 				var amt = document.createElement('div'); amt.textContent = d.order[ d.items[I] ]; amt.classList.add('checkout_item_amount');
 				cItem.append(price, name, amt);
-				subShip += 1;
+				subShip += d.order[ d.items[I] ];
 			}
 		}
-		console.log(subShip);
 		shipping += 0.2 * Math.ceil(subShip/5);
 
 		document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
