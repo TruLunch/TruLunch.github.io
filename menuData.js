@@ -52,7 +52,7 @@ var menu = [
 		fiber: 3,
 		sugar: 5,
 		protein: 29,
-		tags: ['gluten', 'spicy'],
+		tags: ['gluten', 'celery', 'spicy'],
 		image: 'buffalo-chicken-wrap.png',
 		ingredients: ['vegetable oil', 'butter', 'chicken', 'flour tortilla', 'iceberg lettuce', 'celery', 'hot pepper sauce', 'white vinegar', 'worcestershire sauce', 'cayenne pepper', 'garlic powder', 'salt']
 	},{
@@ -143,6 +143,9 @@ function tagToIcon(tag) {
 		case 'spicy':
 			return 'fa-pepper-hot';
 			break;
+		case 'celery':
+			return 'fa-wind';
+			break;
 		default:
 			return 'fa-question';
 	}
@@ -176,6 +179,9 @@ function tagToText(tag) {
 			break;
 		case 'spicy':
 			return 'Spicy';
+			break;
+		case 'celery':
+			return 'Contains Celery';
 			break;
 		default:
 			return 'Rendering Error';
