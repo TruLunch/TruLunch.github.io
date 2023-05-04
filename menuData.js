@@ -32,11 +32,13 @@ var data = [{
 	start: numberToDate(getDayInWeek('Sunday', today() + 28)).split(',')[0],
 	end: numberToDate(getDayInWeek('Saturday', today() + 28)).split(',')[0],
 	id: 0,
-	items: [2, 3, 1],
+	items: [0, 2, 3, 1, 4],
 	order: {
+			0: 0,
 			1: 0,
 			2: 0,
-			3: 0
+			3: 0,
+			4: 0
 		}
 }];
 
