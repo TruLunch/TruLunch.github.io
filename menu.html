@@ -12,6 +12,7 @@
 			:root{
 				--window-height: 100%;
 				--window-width: 100%;
+				--item-width: 250px;
 			}
 			body{
 				width: 100vw;
@@ -107,9 +108,9 @@
 			}
 			.item{
 				position: relative;
-				flex-grow: 1;
 				align-self: flex-start;
 				min-width: 230px;
+				max-width: 300px;
 				padding: 5px 10px;
 				margin: 10px 15px;
 				padding-bottom: 40px;
@@ -222,10 +223,10 @@
 			.fa-tablets::after{
 				content: "Contains Nuts";
 			}
-			.fa-blackberry{
+			.fa-ellipsis{
 				background: #613317;
 			}
-			.fa-blackberry::after{
+			.fa-ellipsis::after{
 				content: "Contains Sesame";
 			}
 			.fa-seedling{
