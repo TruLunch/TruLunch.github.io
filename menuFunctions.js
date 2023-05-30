@@ -30,7 +30,7 @@ function setDate(num) {
 		item.append(image, name, info, macros, allergies);
 		for ( i2=0; i2<obj.tags.length; i2++ ) {
 			var icon = document.createElement('i');
-			icon.classList.add('fa-solid', 'fa-brand', 'allergen-icon');
+			icon.classList.add('fa-solid', 'allergen-icon');
 			icon.classList.add( tagToIcon(obj.tags[i2]) );	
 			allergies.append(icon);
 		}
