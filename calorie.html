@@ -33,7 +33,7 @@
 				flex-direction: row;
 				align-items: center;
 				margin: 15px 0;
-				max-width: 450px;
+				max-width: max(300px, calc(100% - 50px));
 			}
 			.app > div > label{
 				font-weight: 500;
@@ -90,6 +90,10 @@
 				cursor: pointer;
 				user-select: none;
 			}
+			#submit:hover{
+				background: #008037;
+				color: #fff;
+			}
 			#cover{
 				position: fixed;
 				top: 0;
@@ -122,6 +126,10 @@
 				user-select: none;
 				font-size: 1.2rem;
 			}
+			#resubmit:hover{
+				background: #008037;
+				color: #fff;
+			}
 			#disclaimer{
 				font-size: 0.7rem;
 				margin-top: 5px;
@@ -132,9 +140,9 @@
 		<div class="app">
 			<div id="cover">
 				<div>
-					<p>The average school lunch entree is </p>
+					<p>The average school lunch entree is 371 calories, while you need </p>
 					<label id="amount">400</label>
-					<p> calories less than you need</p>
+					<p> calories in your lunch</p>
 				</div>
 				<div id="resubmit">Back</div>
 				<p id="disclaimer">This is just an estimate, consult a medical professional for accurate numbers</p>
@@ -234,7 +242,7 @@
 			var c = document.getElementById('cover');
 			cover.style.display = 'flex';
 			// 35% of calories for lunch statistic from this source: https://www.omnicalculator.com/health/meal-calorie
-			document.getElementById('amount').textContent = Math.round( amt*0.35 - 413);
+			document.getElementById('amount').textContent = `${Math.round(amt*0.30/10)*10} to ${Math.round(amt*0.40/10)*10}`;
 		});
 
 		document.getElementById('resubmit').addEventListener('click', () => {
